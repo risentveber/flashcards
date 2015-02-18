@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6">
+    <table class="table table-bordered table-striped table-condensed">
+      <tbody>
+        <tr>
+          <th>Исходный текст</th>
+          <td><%= @card.original_text %></td>
+        </tr>
+        <tr>
+          <th>Перевод</th>
+          <td><%= @card.translated_text %></td>
+        </tr>
+        <tr>
+          <th>Дата создания</th>
+          <td><%= @card.created_at %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-3"></div>
+</div>

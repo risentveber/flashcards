@@ -8,9 +8,12 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(article_params)
-    @card.save
-    redirect_to cards_path
+    @card = Card.new(card_params)
+    if @card.save
+      redirect_to cards_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -18,14 +21,26 @@ class CardsController < ApplicationController
   end
 
   def update
-
+    @card = Card.find(params[:id])
+    if @card.update_attributes(card_params)
+      redirect_to @card
+    else
+      render 'edit'
+    end
   end
 
   def show
-    
+    @card = Card.find(params[:id])
   end
+
+  def destroy
+    @card = Card.find(params[:id])
+    @card.destroy if @card
+    redirect_to cards_path
+  end
+
   private
-    def article_params
+    def card_params
       params.require(:card).permit(
       :original_text, :translated_text)
     end

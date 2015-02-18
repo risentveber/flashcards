@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6">
+    <h2>Новая карточка</h2>
+    <%= simple_form_for(@card, html: { class: 'form-vertical' }) do |f| %>
+      <%= f.input :original_text, label: "Исходный текст" %>
+      <%= f.input :translated_text, label: "Перевод" %>
+      <%= f.button :submit, "Создать карточку" %>
+    <% end %>
+  </div>
+  <div class="col-xs-3"></div>
+</div>

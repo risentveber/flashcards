@@ -1,5 +1,6 @@
 <%= simple_form_for(@card, html: { class: 'form-vertical' }) do |f| %>
   <%= f.input :original_text, label: "Исходный текст" %>
   <%= f.input :translated_text, label: "Перевод" %>
+  <%= f.input :review_date, as: :date, html5: true, label: "Дата пересмотра" %>
   <%= f.button :submit, "Создать карточку" %>
 <% end %>

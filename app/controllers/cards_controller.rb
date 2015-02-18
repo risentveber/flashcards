@@ -5,6 +5,7 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @card.review_date = Time.now + 3.days
   end
 
   def create

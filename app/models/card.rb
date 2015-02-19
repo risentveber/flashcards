@@ -1,7 +1,8 @@
 class Card < ActiveRecord::Base
   after_initialize :set_date
 
-  validates :original_text, :translated_text, :review_date, presence: true
+  validates :original_text, :translated_text, :review_date,
+    presence: {message: "Не может быть пустым"}
   validate :texts_is_different
 
   def texts_is_different

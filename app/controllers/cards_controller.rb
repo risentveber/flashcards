@@ -33,7 +33,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card.destroy if @card
+    @card.destroy
     redirect_to cards_path
   end
 

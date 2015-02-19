@@ -12,7 +12,9 @@ class Card < ActiveRecord::Base
 
   private
     def set_date
-      self.review_date = Time.now + 3.days
+      if self.new_record?
+        self.review_date = Time.now + 3.days
+      end
     end
 
 end

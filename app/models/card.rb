@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  after_initialize :set_date
+  before_validation :set_date
 
   validates :original_text, :translated_text, :review_date,
     presence: {message: "Не может быть пустым"}
@@ -13,9 +13,7 @@ class Card < ActiveRecord::Base
 
   private
     def set_date
-      if self.new_record?
-        self.review_date = Time.now + 3.days
-      end
+      self.review_date ||= Time.now + 3.days
     end
 
 end

@@ -1,5 +1,5 @@
 <% if @cards.present? %>
-  <table id ="tablework" class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Исходный текст</th>
@@ -10,7 +10,18 @@
     <tbody>
       <% @cards.each do |card| %>
       <tr>
-        <td><%= card.original_text %></td>
+        <td>
+          <%= link_to card.original_text, card_path(card) %>
+          <%= link_to card_path(card), method: :delete,
+            data: { confirm: "Вы уверены, что хотите удалить?" },
+            class: "pull-right" do %>
+            <span class="glyphicon glyphicon-trash"></span>&nbsp
+          <% end %>
+          <%= link_to edit_card_path(card), class: "pull-right" do %>
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp&nbsp
+          <% end %>
+          
+        </td>
         <td><%= card.translated_text %></td>
         <td><%= card.review_date.strftime("%d/%m/%Y") if card.review_date %></td>
       </tr>

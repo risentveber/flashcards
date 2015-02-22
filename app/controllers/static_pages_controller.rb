@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
-  def index
-  	
+  def review
+    @card = Card.for_review.first
   end
-
+  
 end

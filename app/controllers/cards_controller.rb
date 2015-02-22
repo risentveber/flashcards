@@ -1,13 +1,8 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:edit, :show, :update, :destroy, :check]
-
-  def review_new
-    @card = Card.for_review.order("RANDOM()").first
-    @card.translated_text = nil if @card
-  end
+  before_action :find_card, only: [:edit, :show, :update, :destroy, :review]
 
   def review
-    if (@card.check_translation translation_params)
+    if @card.check_translation(translated_text)
       flash[:success] = "Успех"
     else
       flash[:warning] = "Ошибка"
@@ -60,8 +55,8 @@ class CardsController < ApplicationController
       params.require(:card).permit(:original_text, :translated_text)
     end
 
-    def translation_params
-      params.require(:card).permit(:translated_text)
+    def translated_text
+      params.require(:card).permit(:translated_text)[:translated_text]
     end
 
 end

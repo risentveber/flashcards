@@ -1,5 +1,8 @@
-<%= simple_form_for(@card, html: { class: 'form-vertical' }) do |f| %>
-  <%= f.input :original_text, label: "Исходный текст" %>
-  <%= f.input :translated_text, label: "Перевод" %>
+<%= simple_form_for(@card, novalidate:false, 
+  html: { novalidate: false, class: 'form-vertical' }) do |f| %>
+  <%= f.input :original_text, label: "Исходный текст", 
+    required: false, input_html: {required: true} %>
+  <%= f.input :translated_text, label: "Перевод",
+    required: false, input_html: {required: true} %>
   <%= f.button :submit, "Создать карточку" %>
 <% end %>

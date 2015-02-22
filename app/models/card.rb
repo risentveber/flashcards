@@ -1,7 +1,7 @@
 class Card < ActiveRecord::Base
   before_validation :set_date
 
-  scope :for_review, -> { where("review_date <= ?", Time.now) }
+  scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
   validates :original_text, :translated_text, :review_date,
     presence: {message: "Не может быть пустым"}
@@ -15,7 +15,7 @@ class Card < ActiveRecord::Base
 
   def check_translation(text)
     if UnicodeUtils.downcase(self.translated_text) == UnicodeUtils.downcase(text) 
-      self.review_date = Time.now + 3.days
+      update_attribute :review_date, Time.now + 3.days
       return true
     else
       return false

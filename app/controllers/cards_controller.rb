@@ -1,17 +1,14 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:edit, :show, :update, :destroy]
+  before_action :find_card, only: [:edit, :show, :update, :destroy, :check]
 
-  def check_new
-    @card = Card.get_random
+  def review_new
+    @card = Card.for_review.order("RANDOM()").first
     @card.translated_text = nil if @card
   end
 
-  def check
-    @card = Card.find(params[:card][:id])
-    if (@card.check params[:card][:translated_text])
+  def review
+    if (@card.check_translation translation_params)
       flash[:success] = "Успех"
-      @card.review_date = Time.now + 3.days
-      @card.save
     else
       flash[:warning] = "Ошибка"
     end
@@ -61,6 +58,10 @@ class CardsController < ApplicationController
 
     def card_params
       params.require(:card).permit(:original_text, :translated_text)
+    end
+
+    def translation_params
+      params.require(:card).permit(:translated_text)
     end
 
 end

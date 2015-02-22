@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'cards#check_new'
-  match '/check', to: 'cards#check', via: 'post'
+  root 'cards#review_new'
 
-  resources :cards
+  resources :cards do
+    member do
+      post 'review'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

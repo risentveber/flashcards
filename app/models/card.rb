@@ -11,6 +11,14 @@ class Card < ActiveRecord::Base
     end  
   end
 
+  def check(text)
+    UnicodeUtils.downcase(self.translated_text) == UnicodeUtils.downcase(text) 
+  end
+
+  def self.get_random
+    self.where("review_date <= ?", Time.now).order("RANDOM()").first
+  end
+
   private
     def set_date
       self.review_date ||= Time.now + 3.days

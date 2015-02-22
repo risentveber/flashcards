@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#review'
+  root 'reviews#new'
 
   resources :cards do
     member do
-      post 'review'
+      patch 'review' => 'reviews#create'
     end
   end
 

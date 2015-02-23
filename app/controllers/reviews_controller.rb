@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @card = Card.find(params[:id])
-    if @card.check_translation(translated_text)
+    @card = Card.find(card_id)
+    if @card.check_translation(translation)
       flash[:success] = "Успех"
     else
       flash[:warning] = "Ошибка"
@@ -14,7 +14,10 @@ class ReviewsController < ApplicationController
   end
 
   private
-    def translated_text
-      params.require(:card).permit(:translated_text)[:translated_text]
+    def translation
+      params.permit(:translation)[:translation]
+    end
+    def card_id
+      params.permit(:card_id)[:card_id]
     end
 end

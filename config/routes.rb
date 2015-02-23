@@ -4,12 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'reviews#new'
+  post 'review' => 'reviews#create'
 
-  resources :cards do
-    member do
-      patch 'review' => 'reviews#create'
-    end
-  end
+  resources :cards
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

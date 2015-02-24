@@ -8,13 +8,14 @@ class Card < ActiveRecord::Base
   validate :texts_is_different
 
   def texts_is_different
-    if UnicodeUtils.downcase(self.original_text) == UnicodeUtils.downcase(self.translated_text)
-      errors.add(:original_text, "Тексты совпадают") 
-    end  
+    if UnicodeUtils.downcase(self.original_text.to_s) == UnicodeUtils.downcase(self.translated_text.to_s)
+      errors.add(:original_text, "Тексты совпадают")
+    end
   end
 
   def check_translation(text)
-    if UnicodeUtils.downcase(self.translated_text) == UnicodeUtils.downcase(text) 
+    text ||= ""
+    if UnicodeUtils.downcase(self.translated_text.to_s) == UnicodeUtils.downcase(text)
       update_attribute :review_date, Time.now + 3.days
       return true
     else

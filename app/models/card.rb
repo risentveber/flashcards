@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
   before_validation :set_date
+  before_validation :remove_whitespaces
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
@@ -14,7 +15,8 @@ class Card < ActiveRecord::Base
   end
 
   def check_translation(text)
-    if UnicodeUtils.downcase(self.translated_text.to_s) == UnicodeUtils.downcase(text.to_s)
+    text = text.to_s.squish
+    if UnicodeUtils.downcase(self.translated_text.to_s) == UnicodeUtils.downcase(text)
       update_attribute :review_date, Time.now + 3.days
       return true
     else
@@ -25,6 +27,11 @@ class Card < ActiveRecord::Base
   private
     def set_date
       self.review_date ||= Time.now + 3.days
+    end
+
+    def remove_whitespaces
+      self.translated_text = translated_text.to_s.squish
+      self.original_text = original_text.to_s.squish
     end
 
 end

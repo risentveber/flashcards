@@ -9,11 +9,11 @@ RSpec.describe Card do
   end
 
   it "should make correct check translation" do
-    expect(card.check_translation("Дом")).to be true
+    expect(card.check_translation(" Дом")).to be true
   end
 
   it "should make correct check translation" do
-    expect(card.check_translation("дом")).to be true
+    expect(card.check_translation(" дом ")).to be true
   end
 
   it "should make correct check translation" do

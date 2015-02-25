@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 gem 'unicode_utils'

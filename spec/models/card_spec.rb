@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Card do
   let(:card) { Card.new(original_text: "hause", translated_text: "дом") }
-  let(:ecard) { Card.new }
+  let(:empty_card) { Card.new }
 
   it "should make correct check translation" do
     expect(card.check_translation("Дим")).to be false
@@ -29,12 +29,12 @@ describe Card do
   end
 
   it "should make correct validation" do
-    expect(ecard.valid?).to be false
+    expect(empty_card.valid?).to be false
   end
 
   it "should make correct validation" do
-    ecard.translated_text = "new text"
-    expect(ecard.valid?).to be false
+    empty_card.translated_text = "new text"
+    expect(empty_card.valid?).to be false
   end
 
 end

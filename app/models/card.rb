@@ -14,8 +14,7 @@ class Card < ActiveRecord::Base
   end
 
   def check_translation(text)
-    text ||= ""
-    if UnicodeUtils.downcase(self.translated_text.to_s) == UnicodeUtils.downcase(text)
+    if UnicodeUtils.downcase(self.translated_text.to_s) == UnicodeUtils.downcase(text.to_s)
       update_attribute :review_date, Time.now + 3.days
       return true
     else

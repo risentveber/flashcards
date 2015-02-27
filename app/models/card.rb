@@ -1,9 +1,12 @@
 class Card < ActiveRecord::Base
+  belongs_to :user, dependent: :destroy
+
   before_validation :set_date
   before_validation :remove_whitespaces
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
+  validates :user_id, presence: true
   validates :original_text, :translated_text, :review_date,
     presence: {message: "Не может быть пустым"}
   validate :texts_are_different

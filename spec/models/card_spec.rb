@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Card do
-  let(:card) { Card.new(original_text: "hause", translated_text: "дом") }
+  let(:card) { Card.new(original_text: "hause", translated_text: "дом", user_id: 1) }
   let(:empty_card) { Card.new }
 
   it "should make correct check translation" do

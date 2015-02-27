@@ -1,4 +1,6 @@
 class Card < ActiveRecord::Base
+  belongs_to :user
+
   before_validation :set_date
   before_validation :remove_whitespaces
 

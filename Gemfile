@@ -32,6 +32,7 @@ group :test, :development do
   gem 'capybara'
 end
 
+gem 'sorcery'
 gem 'unicode_utils'
 gem 'simple_form'
 gem 'nokogiri'

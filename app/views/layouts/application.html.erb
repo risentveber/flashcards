@@ -12,13 +12,17 @@
       <div class="navbar-header">
       <a class="navbar-brand" href="/">Флэшкарточкер</a>
       </div>
+      <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Все карточки", cards_path %></li>
-          <li><%= link_to "Добавить карточку", new_card_path %></li>
-          <li><%= link_to "Выйти", logout_path %></li>
-        </ul>
+        <li><%= link_to "Все карточки", cards_path %></li>
+        <li><%= link_to "Добавить карточку", new_card_path %></li>
+        <li><%= link_to "Профиль", profile_path %></li>
+        <li><%= link_to "Выйти", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Зарегистрироваться", signup_path %></li>
+        <li><%= link_to "Войти", login_path %></li>
       <% end %>
+      </ul>
     </div>
     </nav>
 

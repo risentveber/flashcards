@@ -1,6 +1,13 @@
 class ReviewController < ApplicationController
+  skip_before_action :require_login, only: :new
+
   def new
-    @card = Card.for_review.first
+    if current_user
+      @card = Card.for_review.first
+    else
+      render 'static_pages/index'
+      return
+    end
   end
 
   def create

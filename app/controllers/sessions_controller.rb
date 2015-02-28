@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_login, except: [:destroy]
+  skip_before_action :require_login, except: [:destroy]
+
   def new
-    @user = User.new
   end
 
   def create
     if @user = login(params[:email], params[:password])
-      redirect_back_or_to users_path
+      redirect_back_or_to root_path
     else
-      flash.now[:warning] = 'неправильная почта или пароль'
+      flash.now[:warning] = 'Неправильная почта или пароль'
       render 'new'
     end
   end

@@ -5,8 +5,7 @@ class ReviewController < ApplicationController
     if current_user
       @card = Card.for_review.first
     else
-      render 'static_pages/index'
-      return
+      redirect_to '/home'
     end
   end
 

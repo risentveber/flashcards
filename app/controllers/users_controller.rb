@@ -2,11 +2,8 @@ class UsersController < ApplicationController
 
   skip_before_action :require_login, only: [ :new, :create]
 
-  before_action :find_user, only: [:edit, :show, :update, :destroy]
-
   def new
     @user = User.new
-    @button_name = 'Создать'
   end
 
   def create
@@ -16,21 +13,18 @@ class UsersController < ApplicationController
       flash[:success] = 'Успешная регистрация'
       redirect_to profile_path
     else
-      @button_name = 'Создать'
       render 'new'
     end
   end
 
   def edit
-    @button_name = 'Сохранить'
   end
 
   def update
-    if @user.update_attributes user_params
+    if current_user.update_attributes user_params
       flash[:success] = 'Данные успешно изменены'
-      redirect_to @user
+      redirect_to current_user
     else
-      @button_name = 'Сохранить'
       render 'edit'
     end
   end
@@ -39,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = current_user
     render 'show'
   end
 
@@ -48,9 +41,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def find_user
-      @user = User.find(params[:id])
-    end
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end

@@ -32,6 +32,7 @@ group :test, :development do
   gem 'capybara'
 end
 
+gem 'database_cleaner'
 gem 'sorcery'
 gem 'unicode_utils'
 gem 'simple_form'

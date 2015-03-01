@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
   root 'review#new'
+  get 'home' => 'static_pages#index'
 
   resources :review, only: :create
   resources :cards
   resources :users
   resources :sessions
-  get 'login'  => 'sessions#new',     :as => :login
-  get 'logout' => 'sessions#destroy', :as => :logout
+  get 'login'  => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
 
-  get 'signup'  => 'users#new',     :as => :signup
-  get 'profile' => 'users#profile', :as => :profile
+  get 'signup'  => 'users#new'
+  get 'profile' => 'users#profile'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

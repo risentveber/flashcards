@@ -4,11 +4,20 @@ feature "Homepage" do
   context "homepage has some buttons" do
 
     before :all do
+      create :user
       create :card
     end
 
     before :each do
+      visit login_path
+      fill_in :email, with: "boris@gmail.com"
+      fill_in :password, with: "secret"
+      click_button "Войти"
       visit root_path
+    end
+
+    it 'should authorize' do
+      expect(page).to have_content "Профиль"
     end
 
     it "show that answer is wrong" do
@@ -21,18 +30,6 @@ feature "Homepage" do
       fill_in :translation, with: "дом"
       click_button "Проверить"
       expect(page).to have_content "Успех"
-    end
-
-    it "has all cards button" do
-      expect(page).to have_content "Все карточки"
-    end
-
-    it "has new card button" do
-      expect(page).to have_content "Добавить карточку"
-    end
-
-    it "has new logo button" do
-      expect(page).to have_content "Флэшкарточкер"
     end
 
   end

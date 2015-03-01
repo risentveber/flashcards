@@ -30,9 +30,10 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
-gem 'database_cleaner'
+
 gem 'sorcery'
 gem 'unicode_utils'
 gem 'simple_form'

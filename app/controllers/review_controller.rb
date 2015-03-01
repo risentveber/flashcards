@@ -5,7 +5,7 @@ class ReviewController < ApplicationController
     if current_user
       @card = Card.for_review.first
     else
-      redirect_to '/home'
+      redirect_to home_path
     end
   end
 

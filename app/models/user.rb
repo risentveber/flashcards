@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: { message: 'Не может быть пустым' }
   validates :email, uniqueness: { message: 'Такой email уже занят'}
 
-
-
   private
     def remove_whitespaces
       self.email = email.to_s.squish

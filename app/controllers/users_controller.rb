@@ -32,12 +32,7 @@ class UsersController < ApplicationController
   def show
   end
 
-  def profile
-    render 'show'
-  end
-
   def destroy
-
   end
 
   private

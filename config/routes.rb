@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
 
   get 'signup'  => 'users#new'
-  get 'profile' => 'users#profile'
+  get 'profile' => 'users#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

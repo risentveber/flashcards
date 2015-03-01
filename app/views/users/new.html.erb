@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6">
+    <h3>Регистрация</h3>
+    <%= simple_form_for(@user, novalidate: false,
+      html: { novalidate: false, class: 'form-vertical' }) do |f| %>
+      <%= f.input :email, label: 'Почта',
+        required: false, input_html: { required: true } %>
+      <%= f.input :password, label: 'Пароль',
+        required: false, input_html: { required: true } %>
+      <%= f.input :password_confirmation, label: 'Подтверждение пароля',
+        required: false, input_html: { required: true } %>
+      <%= f.button :submit, 'Зарегистрироваться' %>
+    <% end %>
+  </div>
+  <div class="col-xs-3"></div>
+</div>

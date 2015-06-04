@@ -35,6 +35,15 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'unicorn'
+end
+
+group :development do
+  gem 'capistrano-rails-console'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
 end
 
 gem 'sorcery'
